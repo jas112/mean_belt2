@@ -1,0 +1,10 @@
+<a href="#!/dashboard"><button type="button" name="button" style="background-color: blue; color:white;">Dashboard</button></a>
+<a href="/logout"><button type="button" name="button" style="background-color: red; color:white;">Logout</button></a>
+<h2>{{single_user.name}}'s Bucket List'</h2>
+<h3>Done:</h3>
+<!-- <h6>{{single_user.items}}</h6> -->
+<h3>Pending:</h3>
+<div ng-repeat="item in items">
+  <input type="checkbox" name="bucketItme" value={{item._id}}>{{item._user.name}} | {{item.title}} - {{item.description}} - {{item.createdAt}}<br>
+</div>
+<!-- <h6>{{single_user.items}}</h6> -->

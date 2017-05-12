@@ -1,0 +1,30 @@
+<h1>Welcome, {{logged_user.name}}!</h1>
+<a href="#!/index"><button type="button" name="button" style="background-color: blue; color:white;">Home</button></a>
+<a href="/logout"><button type="button" name="button" style="background-color: red; color:white;">Logout</button></a>
+<form name="bucketItemForm">
+  <input type="text" ng-model="newItem.title" name="title" placeholder="Title" ng-minlength="5" required><input type="text" ng-model="newItem.description" name="description" placeholder="Description"ng-minlength="10" required>
+  <div ng-messages="bucketItemForm.title.$error">
+    <h6 ng-message="required">Title is required</h6>
+    <h6 ng-message="minlength">Title must be at least 5 characters</h6>
+  </div>
+  <div ng-messages="bucketItemForm.description.$error">
+    <h6 ng-message="required">Description is required</h6>
+    <h6 ng-message="minlength">Title must be at least 10 characters</h6>
+  </div>
+  <select ng-model="newItem.tag">
+    <option ng-repeat='user in users' value={{user._id}} ng-bind='user.name'></option>
+  </select>
+  <button ng-disabled="bucketItemForm.$invalid" type="button" name="button" ng-click="createItem(newItem)">Add to List</button>
+</form>
+<h4>Before I die I want to:</h4>
+<!-- {{logged_user.items}} -->
+<div ng-repeat="item in logged_user.items">
+  <input type="checkbox" name="bucketItme" value={{item._id}}>{{item._user.name}} | {{item.title}} - {{item.description}} - {{item.createdAt}}<br>
+</div>
+<!-- <div ng-repeat="item in logged_user.items">
+  <p>{{item._user.name}} | {{item.title}} - {{item.description}} - {{item.createdAt}}</p>
+</div> -->
+<h5>List of Other Users (Click to view profile).</h5>
+<div ng-repeat='user in users'>
+  <a href="#!/user/{{user._id}}">{{user.name}}</a>
+</div>
